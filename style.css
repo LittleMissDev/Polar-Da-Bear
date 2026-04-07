@@ -1,80 +1,220 @@
-* { margin: 0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+html, body {
     width: 100%;
-    height: 800vh;
-    background-color: black;
-    font-family: 'Noto Sans Ethiopic', sans-serif;                                           
-    color: white;                                            
+    min-height: 100%;
+    background-color: #020202;
+    color: white;
+    font-family: 'Noto Sans Ethiopic', sans-serif;
+    overflow-x: hidden;
 }
 
-.heropage{
-background-color: #9dbfda;
-height: 95dvh;
- width: 100%;
- display: grid;
-justify-content: center;
-align-items: center;
-position: fixed;
+body {
+    background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
+                linear-gradient(180deg, #050505 0%, #010101 100%);
 }
 
-h1 {
-  text-align: center;
-  position: relative;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'seriousr2', sans-serif; 
-  font-weight: 700;
-  font-style: normal;
-  font-size: 9vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
-  max-width: 93vw;
-  contain: layout style paint;
+nav {
+    position: fixed;
+    inset: 0 auto auto 0;
+    width: 100%;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 2vw, 28px);
+    z-index: 10;
+    pointer-events: auto;
+}
+
+nav a {
+    color: #d4d4ff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 180ms ease, transform 180ms ease;
+}
+
+nav a:hover {
+    color: #8ab4ff;
+    transform: translateY(-1px);
 }
 
 .parallax-container {
     position: relative;
     width: 100%;
-    height: 100vh; /* Takes up the full screen height */
-    overflow: hidden; /* Hides whatever scrolls out of the box */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #020202;
+}
+
+.parallax-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.86) 72%);
+    pointer-events: none;
+    z-index: 2;
 }
 
 .parallax-layer {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures images cover the screen without stretching */
-    pointer-events: none; /* Stops images from blocking button clicks */
+    object-fit: cover;
+    pointer-events: none;
+    will-change: transform;
 }
 
-/* Dictate the order (higher number = closer to the front) */
-.layer-sky { z-index: 1; }
-.layer-mountains { z-index: 2; }
-.layer-trees { z-index: 3; }
-.layer-bear { 
-    z-index: 4; 
-    object-position: right bottom; /* Keep the bear pinned to the right */
+.sky {
+    z-index: 1;
 }
+
+.mountains {
+    z-index: 2;
+}
+
+.Snowylandtrees {
+    z-index: 3;
+}
+
+.polarbear {
+    z-index: 4;
+    width: auto;
+    height: 80%;
+    right: 4%;
+    bottom: 0;
+    top: auto;
+    left: auto;
+    transform: translate3d(0,0,0);
+}
+
 .layer-ui {
-    z-index: 5;
-    pointer-events: auto; /* Allow clicks on UI */
+    position: absolute;
+    inset: 0;
+    z-index: 6;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 24px;
+    text-align: center;
+    pointer-events: auto;
 }
 
-a:link {
-  text-decoration: none;
+.hero-copy {
+    width: min(86vw, 780px);
+    display: grid;
+    gap: 1.3rem;
+    align-items: center;
+}
+
+.hero-copy h1 {
+    font-family: 'seriousr2', sans-serif;
+    font-size: clamp(3.4rem, 7vw, 6.2rem);
+    letter-spacing: 0.25em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    text-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-copy p {
+    margin: 0 auto;
+    max-width: 700px;
+    font-size: clamp(1rem, 1.05vw, 1.25rem);
+    color: #eef0ff;
+    text-shadow: 0 8px 22px rgba(0,0,0,0.3);
+}
+
+.buy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #5d92ff, #2ba1ff);
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border: none;
+    box-shadow: 0 22px 60px rgba(18, 81, 208, 0.24);
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 30px 80px rgba(18, 81, 208, 0.3);
+    background: linear-gradient(135deg, #80b6ff, #4cc1ff);
+}
+
+.layer-ui h1 {
+    font-family: 'seriousr2', sans-serif;
+    font-size: clamp(3.8rem, 8vw, 7rem);
+    letter-spacing: 0.25em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.layer-ui p {
+    max-width: 720px;
+    font-size: clamp(1rem, 1.1vw, 1.3rem);
+    color: #dedeff;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.buy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #5d92ff, #2ba1ff);
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border: none;
+    box-shadow: 0 22px 60px rgba(18, 81, 208, 0.24);
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 30px 80px rgba(18, 81, 208, 0.3);
+    background: linear-gradient(135deg, #80b6ff, #4cc1ff);
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    nav {
+        padding: 14px 18px;
+        gap: 16px;
+    }
+
+    .polarbear {
+        height: 70%;
+        right: 2%;
+    }
+}
+
+@media (max-width: 640px) {
+    .layer-ui h1 {
+        font-size: clamp(2.8rem, 12vw, 4.6rem);
+    }
+
+    .layer-ui p {
+        font-size: 1rem;
+    }
+
+    .buy-btn {
+        width: 100%;
+        max-width: 320px;
+    }
 }
